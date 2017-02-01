@@ -1,4 +1,5 @@
 import { log, logMethod, logProperty, logParameter, logMethodParameters, logClass } from './logDecorator';
+import { Injector } from './injector';
 import 'reflect-metadata/Reflect.js';
 
 @log()
@@ -17,8 +18,20 @@ class Class {
 	}
 }
 
-const c = new Class();
-c.method();
-c.methodWithParam('Nice!', 5);
-c.prop = '123';
-console.log(c.prop);
+
+@Injectable()
+class Other {
+	constructor() {
+		console.log('Other initialized');
+	}
+}
+
+const injector = new Injector([Other]);
+
+const other = injector.get(Other);
+// const o = new Other();
+// const c = new Class();
+// c.method();
+// c.methodWithParam('Nice!', 5);
+// c.prop = '123';
+// console.log(c.prop);
