@@ -32,6 +32,7 @@ class Other {
 const injector = new Injector([Other]);
 
 const other = injector.get(Other);
+const other2 = injector.get(Other);
 // const o = new Other();
 // const c = new Class();
 // c.method();
