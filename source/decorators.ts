@@ -10,6 +10,35 @@ export function logMethod(target: any, key: string, value: any) {
 	};
 }
 
+export function logProperty(target: any, key: string) {
+	// property value
+	let _val = target[key];
+
+	// property getter
+	const getter = function () {
+		console.log(`Get: ${key} => ${_val}`);
+		return _val;
+	};
+
+	// property setter
+	const setter = function (newVal) {
+		console.log(`Set: ${key} => ${newVal}`);
+		_val = newVal;
+	};
+
+	// Delete property.
+	if (delete target[key]) {
+
+		// Create new property with getter and setter
+		Object.defineProperty(target, key, {
+			get: getter,
+			set: setter,
+			enumerable: true,
+			configurable: true
+		});
+	}
+}
+
 export function logParameter(target: any, key : string, index : number) {
 	const metadataKey = `__log_${key}_parameters`;
 	if (Array.isArray(target[metadataKey])) {

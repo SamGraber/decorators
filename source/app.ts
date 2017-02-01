@@ -1,8 +1,10 @@
-import { logMethod, logParameter, logMethodParameters, logClass } from './decorators';
+import { logMethod, logProperty, logParameter, logMethodParameters, logClass } from './decorators';
 import 'reflect-metadata/Reflect.js';
 
 @logClass
 class Class {
+	@logProperty prop: string;
+
 	@logMethod
 	method() {
 		console.log('in method');
@@ -18,3 +20,5 @@ class Class {
 const c = new Class();
 c.method();
 c.methodWithParam('Nice!', 5);
+c.prop = '123';
+console.log(c.prop);
