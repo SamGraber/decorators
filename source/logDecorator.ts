@@ -50,19 +50,16 @@ export function logProperty(target: any, key: string) {
 
 export function logParameter(target: any, key : string, index : number) {
 	const metadataKey = `__log_${key}_parameters`;
-	if (Array.isArray(target[metadataKey])) {
-		target[metadataKey].push(index);
-	}
-	else {
-		target[metadataKey] = [index];
-	}
+	const indices = Reflect.getMetadata(metadataKey, target, key) || [];
+	indices.push(index);
+	Reflect.defineMetadata(metadataKey, indices, target, key);
 }
 
 export function logMethodParameters(target: any, key: string, descriptor: any) {
 	const originalMethod = descriptor.value;
 	descriptor.value = function (...args: any[]) {
 		const metadataKey = `__log_${key}_parameters`;
-		const indices = target[metadataKey];
+		const indices = Reflect.getMetadata(metadataKey, target, key);
 
 		if (Array.isArray(indices)) {
 
