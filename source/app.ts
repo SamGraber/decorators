@@ -1,6 +1,7 @@
-import { logMethod, logParameter, logMethodParameters } from './decorators';
+import { logMethod, logParameter, logMethodParameters, logClass } from './decorators';
 import 'reflect-metadata/Reflect.js';
 
+@logClass
 class Class {
 	@logMethod
 	method() {
