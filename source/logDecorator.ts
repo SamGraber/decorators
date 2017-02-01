@@ -1,6 +1,6 @@
-import { decorate, IDecoratorFactory } from './decoratorHelper';
+import { decorate, IDecoratorFactory, IDecorator } from './decoratorHelper';
 
-export const log: IDecoratorFactory = decorate({
+export const log: IDecoratorFactory<IDecorator> = decorate({
 	classDecorator: () => logClass,
 	propertyDecorator: () => logProperty,
 	parameterDecorator: () => logParameter,

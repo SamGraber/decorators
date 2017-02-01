@@ -1,19 +1,35 @@
 export interface IDecoratorOptions {
-	classDecorator?: IDecoratorFactory;
-	propertyDecorator?: IDecoratorFactory;
-	parameterDecorator?: IDecoratorFactory;
-	methodDecorator?: IDecoratorFactory;
+	classDecorator?: IDecoratorFactory<IClassDecorator>;
+	propertyDecorator?: IDecoratorFactory<IPropertyDecorator>;
+	parameterDecorator?: IDecoratorFactory<IParameterDecorator>;
+	methodDecorator?: IDecoratorFactory<IMethodDecorator>;
 }
 
-export interface IDecoratorFactory {
-	(...args: any[]): IDecorator;
+export interface IDecoratorFactory<T extends IDecorator> {
+	(...args: any[]): T;
 }
 
 export interface IDecorator {
 	(...args: any[]): any;
 }
 
-export function decorate(options: IDecoratorOptions): IDecoratorFactory {
+export interface IClassDecorator {
+	(target: any): any;
+}
+
+export interface IPropertyDecorator {
+	(target: any, key: string, empty: undefined): any;
+}
+
+export interface IParameterDecorator {
+	(target: any, key: string, index: number): any;
+}
+
+export interface IMethodDecorator {
+	(target: any, key: string, method: Function): any;
+}
+
+export function decorate(options: IDecoratorOptions): IDecoratorFactory<IDecorator> {
 	return (...decoratorConfig: any[]) => {
 		return (...decoratorArgs : any[]) => {
 			switch(decoratorArgs.length) {
@@ -35,7 +51,7 @@ export function decorate(options: IDecoratorOptions): IDecoratorFactory {
 	};
 }
 
-function callIfAvailable(decorator: IDecoratorFactory, decoratorType: string, decoratorConfig: any[], decoratorArgs: any[]): any {
+function callIfAvailable(decorator: IDecoratorFactory<IDecorator>, decoratorType: string, decoratorConfig: any[], decoratorArgs: any[]): any {
 	if (decorator) {
 		return decorator.apply(this, decoratorConfig).apply(this, decoratorArgs);
 	}
