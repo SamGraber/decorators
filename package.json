@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/es6-shim": "^0.31.32",
+    "@types/reflect-metadata": "0.0.5",
     "reflect-metadata": "^0.1.9"
   },
   "devDependencies": {
