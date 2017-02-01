@@ -1,4 +1,5 @@
 import { log } from './logDecorator';
+import { Injectable } from './injectDecorator';
 import { Injector } from './injector';
 import 'reflect-metadata/Reflect.js';
 
