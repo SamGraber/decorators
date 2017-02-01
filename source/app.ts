@@ -1,4 +1,4 @@
-import { log, logMethod, logProperty, logParameter, logMethodParameters, logClass } from './logDecorator';
+import { log } from './logDecorator';
 import { Injector } from './injector';
 import 'reflect-metadata/Reflect.js';
 
