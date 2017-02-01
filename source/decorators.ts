@@ -1,3 +1,21 @@
+export function log(...args : any[]) {
+	switch(args.length) {
+		case 1:
+			return logClass.apply(this, args);
+		case 2:
+			return logProperty.apply(this, args);
+		case 3:
+			if (args[2] === undefined) {
+				return logProperty.apply(this, args);
+			} else if (typeof args[2] === "number") {
+				return logParameter.apply(this, args);
+			}
+			return logMethodParameters.apply(this, args);
+		default:
+			throw new Error("Decorators are not valid here!");
+	}
+}
+
 export function logMethod(target: any, key: string, value: any) {
 	return {
 		value: function (...args: any[]) {

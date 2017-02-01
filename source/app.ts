@@ -1,17 +1,17 @@
-import { logMethod, logProperty, logParameter, logMethodParameters, logClass } from './decorators';
+import { log, logMethod, logProperty, logParameter, logMethodParameters, logClass } from './decorators';
 import 'reflect-metadata/Reflect.js';
 
-@logClass
+@log
 class Class {
-	@logProperty prop: string;
+	@log prop: string;
 
-	@logMethod
+	@log
 	method() {
 		console.log('in method');
 	}
 
-	@logMethodParameters
-	methodWithParam(@logParameter param: string, param2: number) {
+	@log
+	methodWithParam(@log param: string, param2: number) {
 		console.log('Param1', param);
 		console.log('Param2', param2);
 	}
