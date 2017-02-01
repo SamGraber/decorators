@@ -26,6 +26,9 @@ class Other {
 	}
 }
 
+// Reflect.defineMetadata('design:class', {}, Class);
+// console.log(Reflect.getMetadata('design:class', Class));
+
 const injector = new Injector([Other]);
 
 const other = injector.get(Other);
