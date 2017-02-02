@@ -31,9 +31,12 @@ class Other {
 // console.log(Reflect.getMetadata('design:class', Class));
 
 const injector = new Injector([Other]);
+const injector2 = new Injector([Other]);
 
 const other = injector.get(Other);
 const other2 = injector.get(Other);
+
+const other3 = injector2.get(Other);
 // const o = new Other();
 // const c = new Class();
 // c.method();

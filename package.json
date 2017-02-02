@@ -13,7 +13,9 @@
   "dependencies": {
     "@types/es6-shim": "^0.31.32",
     "@types/reflect-metadata": "0.0.5",
-    "reflect-metadata": "^0.1.9"
+    "@types/uuid": "^2.0.29",
+    "reflect-metadata": "^0.1.9",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "@types/typescript": "^0.4.29",
