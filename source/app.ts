@@ -22,7 +22,7 @@ class Class {
 
 @Injectable()
 class Other {
-	constructor() {
+	constructor(c: Class, x: string) {
 		console.log('Other initialized');
 	}
 }
